@@ -1,14 +1,13 @@
 //Страница, где можно добавить комменатрий
 
-import {renderUploadImageComponent} from "./upload-image-component.js";
+import { renderUploadImageComponent } from "./upload-image-component.js";
 
-export function renderAddPostPageComponent({appEl, onAddPostClick}) {
-    let imageUrl = "";
+export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
+  let imageUrl = "";
 
-
-    const render = () => {
-        // TODO: Реализовать страницу добавления поста
-        const appHtml = `
+  const render = () => {
+    // TODO: Реализовать страницу добавления поста
+    const appHtml = `
             <div class="page-container">
                   <div class="page-header">
                        <h1 class="logo">instapro</h1>
@@ -25,31 +24,31 @@ export function renderAddPostPageComponent({appEl, onAddPostClick}) {
             </div>
       `;
 
-        appEl.innerHTML = appHtml;
+    appEl.innerHTML = appHtml;
 
-        document.getElementById("add-button").addEventListener("click", () => {
-            const textarea = document.querySelector(".input.textarea");
-            const text = textarea.value;
+    document.getElementById("add-button").addEventListener("click", () => {
+      const textarea = document.querySelector(".input.textarea");
+      const text = textarea.value;
 
-            if (!text || !imageUrl) {
-                alert("Заполните все поля");
-                return;
-            }
+      if (!text || !imageUrl) {
+        alert("Заполните все поля");
+        return;
+      }
 
-            onAddPostClick({description: text, imageUrl: imageUrl});
-        });
-    };
+      onAddPostClick({ description: text, imageUrl: imageUrl });
+    });
+  };
 
-    render();
+  render();
 
-    const uploadImageContainer = appEl.querySelector(".upload-image-container");
+  const uploadImageContainer = appEl.querySelector(".upload-image-container");
 
-    if (uploadImageContainer) {
-        renderUploadImageComponent({
-            element: appEl.querySelector(".upload-image-container"),
-            onImageUrlChange(newImageUrl) {
-                imageUrl = newImageUrl;
-            },
-        });
-    }
+  if (uploadImageContainer) {
+    renderUploadImageComponent({
+      element: appEl.querySelector(".upload-image-container"),
+      onImageUrlChange(newImageUrl) {
+        imageUrl = newImageUrl;
+      },
+    });
+  }
 }
